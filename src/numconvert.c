@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* Boolean data type */
-typedef enum{false, true} bool;
-
 /* Characters which represent numbers */
 typedef enum
 {
@@ -21,24 +18,59 @@ struct node
 {
 	char data;
 	struct node* next;
+	struct node* prev;
 };
 
-int convertfromdecimal(int n)
+void append(struct node** headref, char value)
+{
+	struct node* newnode = (struct node *)malloc(sizeof(struct node));
+	struct node* current = *headref;
+
+	newnode->data = value;
+	newnode->next = NULL;
+	newnode->prev = NULL;
+
+	if (*headref == NULL)
+	{
+		*headref = newnode;
+	}
+	else
+	{
+		while (current->next != NULL)
+			current = current->next;
+		
+		newnode->prev = current;
+		current->next = newnode;
+	}
+}
+
+char* convertfromdecimal(char* n)
 {
 	return n;
 }
 
-int converttodecimal(int n)
+char* converttodecimal(char* n)
 {
 	return n;
 }
 
-int convert(int n)
+char* convert(char* n)
 {
 	return n;
 }
 
-void print()
+void print(struct node* headref)
+{
+	while (headref->next != NULL)
+		headref = headref->next;
+	while (headref != NULL)
+	{
+		printf("%c\n", headref->data);
+		headref = headref->prev;
+	}
+}
+
+void printhelpdisplay()
 {
 	printf("Error\n");
 }
@@ -78,7 +110,7 @@ int checkflags(int index, char* argv[])
 		return 16;
 	else
 	{
-		print();
+		printhelpdisplay();
 		exit(-1);
 	}
 }
@@ -88,7 +120,7 @@ void checkargs(unsigned short *flags, int argc, char* argv[])
 {
 	if (argc < 3)
 	{
-		print();
+		printhelpdisplay();
 		exit(-1);
 	}
 	else if (argc == 3)
@@ -109,7 +141,7 @@ void checkargs(unsigned short *flags, int argc, char* argv[])
 		}
 		else
 		{
-			print();
+			printhelpdisplay();
 			exit(-1);
 		}
 	}
@@ -120,7 +152,7 @@ void checkargs(unsigned short *flags, int argc, char* argv[])
 	}
 	else
 	{
-		print();
+		printhelpdisplay();
 		exit(-1);
 	}
 }
@@ -128,16 +160,19 @@ void checkargs(unsigned short *flags, int argc, char* argv[])
 /* TODO: Implement actual program functionality. Can expect
  * difficulties when attempting to parse letters in >b10
  * number systems.
+ *
+ * Linked list functionality is complete-- now it's time for
+ * arithmetic functions.
  */
 int main(int argc, char* argv[])
 {
 	// Array to store flag values
 	unsigned short flags[2];
-
 	// Check arguments & set flag values
 	checkargs(flags, argc, argv);
 
-	printf("%d\n%d\n", flags[0], flags[1]);
+	// Run program according to flag values set by user
+	struct node* head = NULL;
 
 	return 0;
 }
