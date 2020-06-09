@@ -125,11 +125,9 @@ void checkargs(unsigned short *flags, int argc, char* argv[])
 	}
 }
 
-/* TODO: Implement complete argument checks, from base2
- * all the way to base16. Consider implementing a
- * separate function to do this.
- *
- * Remember: Total arguments need to be either 4 or 3.
+/* TODO: Implement actual program functionality. Can expect
+ * difficulties when attempting to parse letters in >b10
+ * number systems.
  */
 int main(int argc, char* argv[])
 {
