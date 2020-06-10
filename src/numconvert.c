@@ -76,7 +76,7 @@ void printhelpdisplay()
 }
 
 /* Run a given argv index against a series of flag checks */
-int checkflags(int index, char* argv[])
+int flagcheck(int index, char* argv[])
 {
 	if (strcmp(argv[index], "-b2") == 0)
 		return 2;
@@ -130,14 +130,14 @@ void checkargs(unsigned short *flags, int argc, char* argv[])
 		if (argv[1][0] != '-' && argv[2][0] == '-')
 		{
 			flags[0] = 10;
-			flags[1] = checkflags(2, argv);
+			flags[1] = flagcheck(2, argv);
 		}
 		// If 1st argument is flag and 2nd argument is not
 		// flag, default "to" flag to 10
 		else if (argv[1][0] == '-' && argv[2][0] != '-')
 		{
 			flags[1] = 10;
-			flags[0] = checkflags(1, argv);
+			flags[0] = flagcheck(1, argv);
 		}
 		else
 		{
@@ -147,8 +147,8 @@ void checkargs(unsigned short *flags, int argc, char* argv[])
 	}
 	else if (argc == 4)
 	{
-		flags[0] = checkflags(1, argv);
-		flags[1] = checkflags(3, argv);
+		flags[0] = flagcheck(1, argv);
+		flags[1] = flagcheck(3, argv);
 	}
 	else
 	{
@@ -163,6 +163,9 @@ void checkargs(unsigned short *flags, int argc, char* argv[])
  *
  * Linked list functionality is complete-- now it's time for
  * arithmetic functions.
+ *
+ * Functions need to include flags in paramaters, as well as
+ * headref
  */
 int main(int argc, char* argv[])
 {
