@@ -2,39 +2,76 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* Characters which represent numbers */
-typedef enum
+/* Map decimal value to higher-base character value */
+char map(int n)
 {
-	A = 10,
-	B = 11,
-	C = 12,
-	D = 13,
-	E = 14,
-	F = 15,
-} digit;
+	if (n == 0)
+		return '0';
+	else if (n == 1)
+		return '1';
+	else if (n == 2)
+		return '2';
+	else if (n == 3)
+		return '3';
+	else if (n == 4)
+		return '4';
+	else if (n == 5)
+		return '5';
+	else if (n == 6)
+		return '6';
+	else if (n == 7)
+		return '7';
+	else if (n == 8)
+		return '8';
+	else if (n == 9)
+		return '9';
+	else if (n == 10)
+		return 'A';
+	else if (n == 11)
+		return 'B';
+	else if (n == 12)
+		return 'C';
+	else if (n == 13)
+		return 'D';
+	else if (n == 14)
+		return 'E';
+	else if (n == 15)
+		return 'F';
+}
 
-/* TODO: Implement parsing for characters A-F, which will
- * correspond with digit values from 10-11.
- */
-void convertfromdecimal(int fromvalue, char **tovalue, unsigned short base)
+/* Replace string with its backwards equivalent */
+void reverse(char *string, int size)
 {
-	int temp = fromvalue;
-	char newvalue[18];
+	char temp[size];
 
+	for (int i=size-1; i >= 0; i--)
+		temp[size-i-1] = string[i];
+
+	strcpy(string, temp);
+}
+
+void convertfromdecimal(int fromvalue, char *tovalue, unsigned short base)
+{
 	do
 	{
 		// Store remainder value in temporary string
-		char remainder[2];
-		sprintf(remainder, "%d", (temp % base));
-		// Append remainder value to newvalue string		
-		strcat(newvalue, remainder);
-		temp /= base;
-	} while (temp != 0);
+		char remainder;
 
-	printf("%s\n", newvalue);
+		// Append value to remainder
+		remainder = map(fromvalue % base);
+		// Append remainder value to newvalue string
+		strcat(tovalue, &remainder);
+		fromvalue /= base;
+	} while (fromvalue != 0);
+
+	// Reverse string, which stores digits backwards
+	reverse(tovalue, strlen(tovalue));
 }
 
-void converttodecimal(char *fromvalue, char **tovalue, unsigned short base)
+/*
+ * TODO: Hi! Implement me pls! c:
+ */
+void converttodecimal(char *fromvalue, char *tovalue, unsigned short base)
 {
 }
 
@@ -129,10 +166,6 @@ void checkargs(unsigned short *flags, char **fromvalue, int
 	}
 }
 
-/* TODO: Implement actual program functionality. Can expect
- * difficulties when attempting to parse letters in >b10
- * number systems.
- */
 int main(int argc, char* argv[])
 {
 	// Array to store flag values-- the first index is the
@@ -143,24 +176,25 @@ int main(int argc, char* argv[])
 	// Strings to store values of original and converted
 	// numbers
 	char *fromvalue;
-	char *tovalue;
+	char tovalue[18];
 	// Check arguments & set flag / number values
 	checkargs(flags, &fromvalue, argc, argv);
 
 	// Run program according to flag values set by user
 	if (flags[0] == 10)
 	{
-		convertfromdecimal(atoi(fromvalue), &tovalue,
+		convertfromdecimal(atoi(fromvalue), tovalue,
 				flags[1]);
+		printf("%s\n", tovalue);
 	}
 	else if (flags[1] == 10)
 	{
-		converttodecimal(fromvalue, &tovalue, flags[0]);
+		converttodecimal(fromvalue, tovalue, flags[0]);
 	}
 	else
 	{
-		converttodecimal(fromvalue, &tovalue, flags[0]);
-		convertfromdecimal(atoi(tovalue), &tovalue, flags[1]);
+		converttodecimal(fromvalue, tovalue, flags[0]);
+		convertfromdecimal(atoi(tovalue), tovalue, flags[1]);
 	}
 
 	return 0;
