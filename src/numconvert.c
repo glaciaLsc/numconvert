@@ -59,7 +59,7 @@ void convertfromdecimal(int fromvalue, char *tovalue, unsigned short base)
 
 		// Append value to remainder
 		remainder = map(fromvalue % base);
-		// Append remainder value to newvalue string
+		// Append remainder value to toValue string
 		strcat(tovalue, &remainder);
 		fromvalue /= base;
 	} while (fromvalue != 0);
