@@ -15,7 +15,7 @@ sudo gcc src/numconvert.c -o /bin/numconvert -lm
 This program has three available formats for base conversion:
 
 ---
-numconvert *decimal-number* [**-base-of-output**]
+numconvert  *decimal-number*  [**-base-of-output**]
 
 The above format will take in a decimal number, and will
 convert it to an equivalent number whose base is specified by
@@ -31,7 +31,7 @@ Output:
 ```
 
 ---
-numconvert [**-base-of-input**] *number*
+numconvert  [**-base-of-input**]  *number*
 
 The above format will take in a number whose base is
 specified by the user, and convert it to decimal form.
@@ -46,7 +46,7 @@ Output:
 ```
 
 ---
-numconvert [**-base-of-input**] *number* [**-base-of-output**]
+numconvert  [**-base-of-input**]  *number*  [**-base-of-output**]
 
 The above format will take in a number whose base is
 specified by the user, and convert it to an equivalent number
