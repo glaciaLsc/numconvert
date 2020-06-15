@@ -62,6 +62,8 @@ char maptochar(int n)
 		return 'F';
 }
 
+/* Map character representations to corresponding integer
+ * values */
 int maptoint(char c)
 {
 	if (c == '0')
@@ -151,7 +153,15 @@ unsigned long returndecimal(char *fromvalue, unsigned short base)
 
 void printhelpdisplay()
 {
-	printf("Error\n");
+	printf("Usage: numconvert [NUMBER] [-BASE]\n");
+	printf("   or  numconvert [-BASE] [NUMBER]\n");
+	printf("   or  numconvert [-BASE] [NUMBER] [-BASE]\n");
+}
+
+void printerrordisplay()
+{
+	printf("ERROR: Improper syntax\n\n");
+	printf("Type -h or --help for a list of available commands and formats\n");
 }
 
 /* Run a given argv index against a series of flag checks */
@@ -187,9 +197,15 @@ int flagcheck(int index, char* argv[])
 		return 15;
 	else if (strcmp(argv[index], "-b16") == 0)
 		return 16;
-	else
+	else if (strcmp(argv[index], "-h") == 0 ||
+			strcmp(argv[index], "--help") == 0)
 	{
 		printhelpdisplay();
+		exit(0);
+	}
+	else
+	{
+		printerrordisplay();
 		exit(-1);
 	}
 }
@@ -200,7 +216,7 @@ void checkargs(unsigned short *flags, char **fromvalue, int
 {
 	if (argc < 3)
 	{
-		printhelpdisplay();
+		printerrordisplay();
 		exit(-1);
 	}
 	else if (argc == 3)
@@ -223,7 +239,7 @@ void checkargs(unsigned short *flags, char **fromvalue, int
 		}
 		else
 		{
-			printhelpdisplay();
+			printerrordisplay();
 			exit(-1);
 		}
 	}
@@ -235,7 +251,7 @@ void checkargs(unsigned short *flags, char **fromvalue, int
 	}
 	else
 	{
-		printhelpdisplay();
+		printerrordisplay();
 		exit(-1);
 	}
 }
