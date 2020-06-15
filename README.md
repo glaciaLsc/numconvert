@@ -8,7 +8,9 @@ the way to base16 (hexadecimal).
 ## Usage
 This program has three available formats for base conversion:
 
+
 numconvert *decimal-number* [**-base-of-output**]
+
 The above format will take in a decimal number, and will
 convert it to an equivalent number whose base is specified by
 the user.
@@ -22,7 +24,9 @@ Output:
 1011010
 ```
 
+
 numconvert [**-base-of-input**] *number*
+
 The above format will take in a number whose base is
 specified by the user, and convert it to decimal form.
 
@@ -35,7 +39,9 @@ Output:
 90
 ```
 
+
 numconvert [**-base-of-input**] *number* [**-base-of-output**]
+
 The above format will take in a number whose base is
 specified by the user, and convert it to an equivalent number
 whose base is also specified by the user.
