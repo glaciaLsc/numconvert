@@ -3,7 +3,13 @@ This simple command-line utility allows the user to convert
 numbers between various systems, from base2 (binary) all
 the way to base16 (hexadecimal).
 
-## Installation
+## Local Compilation
+You need **GCC** in order to compile and run this program.
+You also need to link with C's *math.h* library in order to
+avoid compilation errors, as shown below:
+```sh
+sudo gcc src/numconvert.c -o /bin/numconvert -lm
+```
 
 ## Usage
 This program has three available formats for base conversion:
@@ -55,10 +61,6 @@ Output:
 F7
 ```
 
-## Local Compilation
-You need **GCC** in order to compile and run this program.
-You also need to link with C's *math.h* library in order to
-avoid compilation errors, as shown below:
-```sh
-gcc -o numconvert numconvert.c -lm
-```
+## Contact
+email me @garrettallenjustice.com to report any issues w/ the
+program.
