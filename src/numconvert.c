@@ -117,6 +117,7 @@ void convertfromdecimal(unsigned long fromvalue, char *tovalue, unsigned short b
 	{
 		// Store remainder value in temporary char
 		char remainder = maptochar(fromvalue % base);
+
 		// Append remainder value to toValue string
 		strcat(tovalue, &remainder);
 		// Update fromValue integer
@@ -260,9 +261,8 @@ int main(int argc, char* argv[])
 {
 	// Array to store flag values-- the first index is the
 	// base of the number to be converted; the second index
-	// is the base of the converted number; the third index
-	// is the value of the number to be converted
-	unsigned short flags[3];
+	// is the base of the converted number
+	unsigned short flags[2];
 	// Strings to store values of original and converted
 	// numbers
 	char *fromvalue;
