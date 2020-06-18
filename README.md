@@ -62,5 +62,5 @@ F7
 ```
 
 ## Contact
-email me @garrettallenjustice.com to report any issues w/ the
+email me @garrettallenjustice@outlook.com to report any issues w/ the
 program.

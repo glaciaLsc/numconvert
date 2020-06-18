@@ -154,9 +154,9 @@ unsigned long returndecimal(char *fromvalue, unsigned short base)
 
 void printhelpdisplay()
 {
-	printf("Usage: numconvert [NUMBER] [-BASE]\n");
-	printf("   or  numconvert [-BASE] [NUMBER]\n");
-	printf("   or  numconvert [-BASE] [NUMBER] [-BASE]\n");
+	printf("Usage: numconvert [DECIMIAL_NUMBER] [-BASE] (decimal to other base)\n");
+	printf("   or  numconvert [-BASE] [NUMBER] (other base to decimal)\n");
+	printf("   or  numconvert [-BASE] [NUMBER] [-BASE] (base to other base)\n");
 }
 
 void printerrordisplay()
@@ -215,8 +215,18 @@ int flagcheck(int index, char* argv[])
 void checkargs(unsigned short *flags, char **fromvalue, int
 		argc, char* argv[])
 {
-	if (argc < 3)
+	if (argc < 2)
 	{
+		printerrordisplay();
+		exit(-1);
+	}
+	else if (argc == 2)
+	{
+		// Check for help flag, which will terminate program
+		// with help display
+		if (argv[1][0] == '-')
+			flags[0] = flagcheck(1, argv);
+
 		printerrordisplay();
 		exit(-1);
 	}
