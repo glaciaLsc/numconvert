@@ -154,9 +154,9 @@ unsigned long returndecimal(char *fromvalue, unsigned short base)
 
 void printhelpdisplay()
 {
-	printf("Usage: numconvert [DECIMIAL_NUMBER] [-BASE] (decimal to other base)\n");
-	printf("   or  numconvert [-BASE] [NUMBER] (other base to decimal)\n");
-	printf("   or  numconvert [-BASE] [NUMBER] [-BASE] (base to other base)\n");
+	printf("Usage: numconvert [NUMBER] -b[2-16] (decimal number to other base)\n");
+	printf("   or  numconvert -b[2-16] [NUMBER] (other base to decimal)\n");
+	printf("   or  numconvert -b[2-16] [NUMBER] -b[2-16] (base to other base)\n");
 }
 
 void printerrordisplay()
