@@ -28,76 +28,82 @@
  * */
 char maptochar(int n)
 {
-	if (n == 0)
-		return '0';
-	else if (n == 1)
-		return '1';
-	else if (n == 2)
-		return '2';
-	else if (n == 3)
-		return '3';
-	else if (n == 4)
-		return '4';
-	else if (n == 5)
-		return '5';
-	else if (n == 6)
-		return '6';
-	else if (n == 7)
-		return '7';
-	else if (n == 8)
-		return '8';
-	else if (n == 9)
-		return '9';
-	else if (n == 10)
-		return 'A';
-	else if (n == 11)
-		return 'B';
-	else if (n == 12)
-		return 'C';
-	else if (n == 13)
-		return 'D';
-	else if (n == 14)
-		return 'E';
-	else if (n == 15)
-		return 'F';
+	switch(n)
+	{
+		case 0 :
+			return '0';
+		case 1 :
+			return '1';
+		case 2 :
+			return '2';
+		case 3 :
+			return '3';
+		case 4 :
+			return '4';
+		case 5 :
+			return '5';
+		case 6 :
+			return '6';
+		case 7 :
+			return '7';
+		case 8 :
+			return '8';
+		case 9 :
+			return '9';
+		case 10 :
+			return 'A';
+		case 11 :
+			return 'B';
+		case 12 :
+			return 'C';
+		case 13 :
+			return 'D';
+		case 14 :
+			return 'E';
+		case 15 :
+			return 'F';
+	}
 }
 
 /* Map character representations to corresponding integer
  * values */
 int maptoint(char c)
 {
-	if (c == '0')
-		return 0;
-	else if (c == '1')
-		return 1;
-	else if (c == '2')
-		return 2;
-	else if (c == '3')
-		return 3;
-	else if (c == '4')
-		return 4;
-	else if (c == '5')
-		return 5;
-	else if (c == '6')
-		return 6;
-	else if (c == '7')
-		return 7;
-	else if (c == '8')
-		return 8;
-	else if (c == '9')
-		return 9;
-	else if (c == 'A')
-		return 10;
-	else if (c == 'B')
-		return 11;
-	else if (c == 'C')
-		return 12;
-	else if (c == 'D')
-		return 13;
-	else if (c == 'E')
-		return 14;
-	else if (c == 'F')
-		return 15;
+	switch(c)
+	{
+		case '0' :
+			return 0;
+		case '1' :
+			return 1;
+		case '2' :
+			return 2;
+		case '3' :
+			return 3;
+		case '4' :
+			return 4;
+		case '5' :
+			return 5;
+		case '6' :
+			return 6;
+		case '7' :
+			return 7;
+		case '8' :
+			return 8;
+		case '9' :
+			return 9;
+		case 'A' :
+			return 10;
+		case 'B' :
+			return 11;
+		case 'C' :
+			return 12;
+		case 'D' :
+			return 13;
+		case 'E' :
+			return 14;
+		case 'F' :
+			return 15;
+	}
 }
 
 /* Replace string with its backwards equivalent */
