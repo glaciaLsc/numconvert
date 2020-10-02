@@ -8,7 +8,8 @@ You need **GCC** in order to compile and run this program.
 You also need to link with C's *math.h* library in order to
 avoid compilation errors, as shown below:
 ```sh
-sudo gcc src/numconvert.c -o /bin/numconvert -lm
+# cd --path-to-numconvert
+sudo gcc src/numconvert.c -o /usr/bin/numconvert -lm
 ```
 
 ## Usage
