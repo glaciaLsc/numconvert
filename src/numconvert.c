@@ -284,7 +284,7 @@ int main(int argc, char* argv[])
 	// Strings to store values of original and converted
 	// numbers
 	char *fromvalue;
-	char tovalue[512];
+	char tovalue[128];
 	// Check arguments & set flag / number values
 	checkargs(flags, &fromvalue, argc, argv);
 
