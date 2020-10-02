@@ -123,13 +123,15 @@ void convertfromdecimal(unsigned long fromvalue, char *tovalue, unsigned short b
 	{
 		// Store remainder value in temporary char
 		char remainder = maptochar(fromvalue % base);
+		char tempstr[] = {remainder, '\0'};
 
 		// Append remainder value to toValue string
-		strcat(tovalue, &remainder);
+		strcat(tovalue, tempstr);
 		// Update fromValue integer
 		fromvalue /= base;
 	} while (fromvalue != 0);
 
+	
 	// Reverse string, which stores digits backwards
 	reverse(tovalue, strlen(tovalue));
 }
@@ -282,7 +284,7 @@ int main(int argc, char* argv[])
 	// Strings to store values of original and converted
 	// numbers
 	char *fromvalue;
-	char tovalue[18];
+	char tovalue[512];
 	// Check arguments & set flag / number values
 	checkargs(flags, &fromvalue, argc, argv);
 
