@@ -109,10 +109,11 @@ int maptoint(char c)
 /* Replace string with its backwards equivalent */
 void reverse(char *string, int size)
 {
-	char temp[size];
+	char temp[size+1];
 
 	for (int i=size-1; i >= 0; i--)
 		temp[size-i-1] = string[i];
+	temp[size] = '\0';
 
 	strcpy(string, temp);
 }
@@ -145,7 +146,7 @@ void converttodecimal(char *fromvalue, char *tovalue, unsigned short base)
 		newvalue += (maptoint(fromvalue[i]) * pow(base,
 					strlen(fromvalue)-i-1));
 
-	sprintf(tovalue, "%d", newvalue);
+	sprintf(tovalue, "%ld", newvalue);
 }
 
 unsigned long returndecimal(char *fromvalue, unsigned short base)
@@ -302,7 +303,7 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		long midvalue = returndecimal(fromvalue, flags[0]);
+		unsigned long midvalue = returndecimal(fromvalue, flags[0]);
 		convertfromdecimal(midvalue, tovalue, flags[1]);
 		printf("%s\n", tovalue);
 	}
