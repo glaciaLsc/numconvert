@@ -86,17 +86,17 @@ maptoint(char c)
 			return 8;
 		case '9':
 			return 9;
-		case 'a' | 'A':
+		case 'a': case 'A':
 			return 10;
-		case 'b' | 'B':
+		case 'b': case 'B':
 			return 11;
-		case 'c' | 'C':
+		case 'c': case 'C':
 			return 12;
-		case 'd' | 'D':
+		case 'd': case 'D':
 			return 13;
-		case 'e' | 'E':
+		case 'e': case 'E':
 			return 14;
-		case 'f' | 'F':
+		case 'f': case 'F':
 			return 15;
 	}
 }
