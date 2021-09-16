@@ -142,7 +142,7 @@ converttodecimal(char *input_number, char *output_number, short input_base_value
 	// Increment tmp with value of digit * base^column
 	for (int i=0; i < strlen(input_number); i++)
 		tmp += (maptoint(input_number[i]) * 
-				powl(input_base_value, strlen(input_number)-i-1));
+				powf(input_base_value, strlen(input_number)-i-1));
 
 	sprintf(output_number, "%ld", tmp);
 }
@@ -155,7 +155,7 @@ returndecimal(char *input_number, short input_base_value)
 	// Increment n with value of digit * base^column
 	for (int i=0; i < strlen(input_number); i++)
 		n += (maptoint(input_number[i]) * 
-				powl(input_base_value, strlen(input_number)-i-1));
+				powf(input_base_value, strlen(input_number)-i-1));
 
 	return n;
 }
