@@ -275,7 +275,7 @@ main(int argc, char* argv[])
 	short input_base_value,
 		  output_base_value;
 	char *input_number;
-	char output_number[128];
+	char output_number[128] = "";
 
 	// Check arguments & set base / number values
 	parse_args(&input_base_value, &output_base_value, &input_number, argc, argv);
