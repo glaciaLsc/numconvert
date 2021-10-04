@@ -22,80 +22,78 @@ along with this program.  If not, see
 char 
 maptochar(int n)
 {
-	switch(n)
-	{
-		case 0:
-			return '0';
-		case 1:
-			return '1';
-		case 2:
-			return '2';
-		case 3:
-			return '3';
-		case 4:
-			return '4';
-		case 5:
-			return '5';
-		case 6:
-			return '6';
-		case 7:
-			return '7';
-		case 8:
-			return '8';
-		case 9:
-			return '9';
-		case 10:
-			return 'A';
-		case 11:
-			return 'B';
-		case 12:
-			return 'C';
-		case 13:
-			return 'D';
-		case 14:
-			return 'E';
-		case 15:
-			return 'F';
+	switch(n) {
+	case 0:
+		return '0';
+	case 1:
+		return '1';
+	case 2:
+		return '2';
+	case 3:
+		return '3';
+	case 4:
+		return '4';
+	case 5:
+		return '5';
+	case 6:
+		return '6';
+	case 7:
+		return '7';
+	case 8:
+		return '8';
+	case 9:
+		return '9';
+	case 10:
+		return 'A';
+	case 11:
+		return 'B';
+	case 12:
+		return 'C';
+	case 13:
+		return 'D';
+	case 14:
+		return 'E';
+	case 15:
+		return 'F';
 	}
 }
 
 int 
 maptoint(char c)
 {
-	switch(c)
-	{
-		case '0':
-			return 0;
-		case '1':
-			return 1;
-		case '2':
-			return 2;
-		case '3':
-			return 3;
-		case '4':
-			return 4;
-		case '5':
-			return 5;
-		case '6':
-			return 6;
-		case '7':
-			return 7;
-		case '8':
-			return 8;
-		case '9':
-			return 9;
-		case 'a': case 'A':
-			return 10;
-		case 'b': case 'B':
-			return 11;
-		case 'c': case 'C':
-			return 12;
-		case 'd': case 'D':
-			return 13;
-		case 'e': case 'E':
-			return 14;
-		case 'f': case 'F':
-			return 15;
+	switch(c) {
+	case '0':
+		return 0;
+	case '1':
+		return 1;
+	case '2':
+		return 2;
+	case '3':
+		return 3;
+	case '4':
+		return 4;
+	case '5':
+		return 5;
+	case '6':
+		return 6;
+	case '7':
+		return 7;
+	case '8':
+		return 8;
+	case '9':
+		return 9;
+	case 'a': case 'A':
+		return 10;
+	case 'b': case 'B':
+		return 11;
+	case 'c': case 'C':
+		return 12;
+	case 'd': case 'D':
+		return 13;
+	case 'e': case 'E':
+		return 14;
+	case 'f': case 'F':
+		return 15;
 	}
 }
 
@@ -222,50 +220,49 @@ void
 parse_args(short *input_base_value, short *output_base_value, 
 		char **input_number, int argc, char* argv[])
 {
-	switch (argc)
-	{
-		case 1:
-			printerrordisplay();
-			exit(-1);
-		case 2:
-			// Check for help flag, which will terminate program
-			// with help display
-			if (argv[1][0] == '-')
-				flagcheck(argv[1]);
+	switch (argc) {
+	case 1:
+		printerrordisplay();
+		exit(-1);
+	case 2:
+		// Check for help flag, which will terminate program
+		// with help display
+		if (argv[1][0] == '-')
+			flagcheck(argv[1]);
 
-			printerrordisplay();
-			exit(-1);
-		case 3:
-			// If 1st argument is not flag and 2nd argument is
-			// flag, set input base value to 10
-			if (argv[1][0] != '-' && argv[2][0] == '-')
-			{
-				*input_base_value = 10;
-				*output_base_value = flagcheck(argv[2]);
-				*input_number = argv[1];
-			}
-			// If 1st argument is flag and 2nd argument is not
-			// flag, set output base value to 10
-			else if (argv[1][0] == '-' && argv[2][0] != '-')
-			{
-				*output_base_value = 10;
-				*input_base_value = flagcheck(argv[1]);
-				*input_number = argv[2];
-			}
-			else
-			{
-				printerrordisplay();
-				exit(-1);
-			}
-			break;
-		case 4:
+		printerrordisplay();
+		exit(-1);
+	case 3:
+		// If 1st argument is not flag and 2nd argument is
+		// flag, set input base value to 10
+		if (argv[1][0] != '-' && argv[2][0] == '-')
+		{
+			*input_base_value = 10;
+			*output_base_value = flagcheck(argv[2]);
+			*input_number = argv[1];
+		}
+		// If 1st argument is flag and 2nd argument is not
+		// flag, set output base value to 10
+		else if (argv[1][0] == '-' && argv[2][0] != '-')
+		{
+			*output_base_value = 10;
 			*input_base_value = flagcheck(argv[1]);
-			*output_base_value = flagcheck(argv[3]);
 			*input_number = argv[2];
-			break;
-		default:
+		}
+		else
+		{
 			printerrordisplay();
 			exit(-1);
+		}
+		break;
+	case 4:
+		*input_base_value = flagcheck(argv[1]);
+		*output_base_value = flagcheck(argv[3]);
+		*input_number = argv[2];
+		break;
+	default:
+		printerrordisplay();
+		exit(-1);
 	}
 }
 
@@ -285,12 +282,12 @@ main(int argc, char* argv[])
 	{
 		convertfromdecimal(atol(input_number), output_number, output_base_value);
 		printf("%s\n", output_number);
-	}
+	} 
 	else if (output_base_value == 10)
 	{
 		converttodecimal(input_number, output_number, input_base_value);
 		printf("%s\n", output_number);
-	}
+	} 
 	else
 	{
 		unsigned long intermediate_number = returndecimal(input_number, input_base_value);
