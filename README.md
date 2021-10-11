@@ -64,5 +64,5 @@ F7
 
 ## Contact
 email me
-[@garrettallenjustice@outlook.com](mailto:garrettallenjustice@outlook.com)
+[@garrettjustice@protonmail.com](mailto:garrettjustice@protonmail.com)
 to report any issues w/ the program.
