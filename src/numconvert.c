@@ -18,7 +18,7 @@ along with this program.  If not, see
 #include <string.h>
 #include <math.h>
 
-char 
+char
 maptochar(int n)
 {
 	switch(n) {
@@ -57,7 +57,7 @@ maptochar(int n)
 	}
 }
 
-int 
+int
 maptoint(char c)
 {
 	switch(c) {
@@ -96,7 +96,7 @@ maptoint(char c)
 	}
 }
 
-void 
+void
 reverse_string(char *str, int size)
 {
 	char tmp[size+1];
@@ -108,12 +108,11 @@ reverse_string(char *str, int size)
 	strcpy(str, tmp);
 }
 
-void 
+void
 convertfromdecimal(unsigned long input_number, char *output_number, 
 		short output_base_value)
 {
-	do
-	{
+	do {
 		// Store remainder value in temporary char
 		char rmdr = maptochar(input_number % output_base_value);
 		char tmp[] = {rmdr, '\0'};
@@ -129,7 +128,7 @@ convertfromdecimal(unsigned long input_number, char *output_number,
 	reverse_string(output_number, strlen(output_number));
 }
 
-void 
+void
 converttodecimal(char *input_number, char *output_number, short input_base_value)
 {
 	unsigned long tmp = 0;
@@ -142,7 +141,7 @@ converttodecimal(char *input_number, char *output_number, short input_base_value
 	sprintf(output_number, "%ld", tmp);
 }
 
-unsigned long 
+unsigned long
 returndecimal(char *input_number, short input_base_value)
 {
 	unsigned long n = 0;
@@ -155,7 +154,7 @@ returndecimal(char *input_number, short input_base_value)
 	return n;
 }
 
-void 
+void
 printhelpdisplay()
 {
 	printf("Usage: numconvert [NUMBER] -b[2-16] (decimal number to other base)\n");
@@ -163,14 +162,14 @@ printhelpdisplay()
 	printf("   or  numconvert -b[2-16] [NUMBER] -b[2-16] (base to other base)\n");
 }
 
-void 
+void
 printerrordisplay()
 {
 	printf("ERROR: Improper syntax\n\n");
 	printf("Type -h or --help for a list of available commands and formats\n");
 }
 
-short 
+short
 flagcheck(char *arg)
 {
 	if (strcmp(arg, "-b2") == 0)
@@ -203,13 +202,11 @@ flagcheck(char *arg)
 		return 15;
 	else if (strcmp(arg, "-b16") == 0)
 		return 16;
-	else if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0)
-	{
+	else if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0) {
 		printhelpdisplay();
 		exit(0);
 	}
-	else
-	{
+	else {
 		printerrordisplay();
 		exit(-1);
 	}
@@ -234,22 +231,19 @@ parse_args(short *input_base_value, short *output_base_value,
 	case 3:
 		// If 1st argument is not flag and 2nd argument is
 		// flag, set input base value to 10
-		if (argv[1][0] != '-' && argv[2][0] == '-')
-		{
+		if (argv[1][0] != '-' && argv[2][0] == '-') {
 			*input_base_value = 10;
 			*output_base_value = flagcheck(argv[2]);
 			*input_number = argv[1];
 		}
 		// If 1st argument is flag and 2nd argument is not
 		// flag, set output base value to 10
-		else if (argv[1][0] == '-' && argv[2][0] != '-')
-		{
+		else if (argv[1][0] == '-' && argv[2][0] != '-') {
 			*output_base_value = 10;
 			*input_base_value = flagcheck(argv[1]);
 			*input_number = argv[2];
 		}
-		else
-		{
+		else {
 			printerrordisplay();
 			exit(-1);
 		}
@@ -277,18 +271,15 @@ main(int argc, char* argv[])
 	parse_args(&input_base_value, &output_base_value, &input_number, argc, argv);
 
 	// Run program according to flag values set by user
-	if (input_base_value == 10)
-	{
+	if (input_base_value == 10) {
 		convertfromdecimal(atol(input_number), output_number, output_base_value);
 		printf("%s\n", output_number);
 	} 
-	else if (output_base_value == 10)
-	{
+	else if (output_base_value == 10) {
 		converttodecimal(input_number, output_number, input_base_value);
 		printf("%s\n", output_number);
 	} 
-	else
-	{
+	else {
 		unsigned long intermediate_number = returndecimal(input_number, input_base_value);
 		convertfromdecimal(intermediate_number, output_number, output_base_value);
 		printf("%s\n", output_number);
