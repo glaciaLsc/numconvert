@@ -109,8 +109,8 @@ reverse_string(char *str, int size)
 }
 
 void
-convertfromdecimal(unsigned long input_number, char *output_number, 
-		short output_base_value)
+convertfromdecimal(unsigned int input_number, char *output_number, 
+		int output_base_value)
 {
 	do {
 		// Store remainder value in temporary char
@@ -129,22 +129,22 @@ convertfromdecimal(unsigned long input_number, char *output_number,
 }
 
 void
-converttodecimal(char *input_number, char *output_number, short input_base_value)
+converttodecimal(char *input_number, char *output_number, int input_base_value)
 {
-	unsigned long tmp = 0;
+	unsigned int tmp = 0;
 	
 	// Increment tmp with value of digit * base^column
 	for (int i=0; i < strlen(input_number); i++)
 		tmp += (maptoint(input_number[i]) * 
 				powf(input_base_value, strlen(input_number)-i-1));
 
-	sprintf(output_number, "%ld", tmp);
+	sprintf(output_number, "%u", tmp);
 }
 
-unsigned long
-returndecimal(char *input_number, short input_base_value)
+unsigned int
+returndecimal(char *input_number, int input_base_value)
 {
-	unsigned long n = 0;
+	unsigned int n = 0;
 
 	// Increment n with value of digit * base^column
 	for (int i=0; i < strlen(input_number); i++)
@@ -155,7 +155,7 @@ returndecimal(char *input_number, short input_base_value)
 }
 
 void
-printhelpdisplay()
+print_help_display()
 {
 	printf("Usage: numconvert [NUMBER] -b[2-16] (decimal number to other base)\n");
 	printf("   or  numconvert -b[2-16] [NUMBER] (other base to decimal)\n");
@@ -163,7 +163,7 @@ printhelpdisplay()
 }
 
 void
-printerrordisplay()
+print_error_display()
 {
 	printf("ERROR: Improper syntax\n\n");
 	printf("Type -h or --help for a list of available commands and formats\n");
@@ -203,31 +203,34 @@ flagcheck(char *arg)
 	else if (strcmp(arg, "-b16") == 0)
 		return 16;
 	else if (strcmp(arg, "-h") == 0 || strcmp(arg, "--help") == 0) {
-		printhelpdisplay();
+		print_help_display();
 		exit(0);
 	}
 	else {
-		printerrordisplay();
+		print_error_display();
 		exit(-1);
 	}
 }
 
 void 
-parse_args(short *input_base_value, short *output_base_value, 
+parse_args(int *input_base_value, int *output_base_value, 
 		char **input_number, int argc, char* argv[])
 {
 	switch (argc) {
 	case 1:
-		printerrordisplay();
+		print_error_display();
 		exit(-1);
 	case 2:
 		// Check for help flag, which will terminate program
 		// with help display
-		if (argv[1][0] == '-')
-			flagcheck(argv[1]);
-
-		printerrordisplay();
-		exit(-1);
+		if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
+			print_help_display();
+			exit(0);
+		}
+		else {
+			print_error_display();
+			exit(-1);
+		}
 	case 3:
 		// If 1st argument is not flag and 2nd argument is
 		// flag, set input base value to 10
@@ -244,17 +247,17 @@ parse_args(short *input_base_value, short *output_base_value,
 			*input_number = argv[2];
 		}
 		else {
-			printerrordisplay();
+			print_error_display();
 			exit(-1);
 		}
-		break;
+		return;
 	case 4:
 		*input_base_value = flagcheck(argv[1]);
 		*output_base_value = flagcheck(argv[3]);
 		*input_number = argv[2];
-		break;
+		return;
 	default:
-		printerrordisplay();
+		print_error_display();
 		exit(-1);
 	}
 }
@@ -262,8 +265,7 @@ parse_args(short *input_base_value, short *output_base_value,
 int 
 main(int argc, char* argv[])
 {
-	short input_base_value,
-		  output_base_value;
+	int input_base_value, output_base_value;
 	char *input_number;
 	char output_number[128] = "";
 
@@ -272,7 +274,7 @@ main(int argc, char* argv[])
 
 	// Run program according to flag values set by user
 	if (input_base_value == 10) {
-		convertfromdecimal(atol(input_number), output_number, output_base_value);
+		convertfromdecimal(atoi(input_number), output_number, output_base_value);
 		printf("%s\n", output_number);
 	} 
 	else if (output_base_value == 10) {
@@ -280,7 +282,8 @@ main(int argc, char* argv[])
 		printf("%s\n", output_number);
 	} 
 	else {
-		unsigned long intermediate_number = returndecimal(input_number, input_base_value);
+		unsigned int intermediate_number = returndecimal(input_number,
+				input_base_value);
 		convertfromdecimal(intermediate_number, output_number, output_base_value);
 		printf("%s\n", output_number);
 	}
